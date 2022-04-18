@@ -227,3 +227,7 @@ Example:
 3) bang: bar
 4) bang: baz
 ```
+
+### HELP
+
+Returns all possible commands and a brief explanation of how each functions
