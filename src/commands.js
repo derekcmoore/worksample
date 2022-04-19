@@ -1,9 +1,10 @@
-const { printArray, listAllMembers } = require("./helpers.js");
+const { printArray, listAllMembers, checkInput } = require("./helpers.js");
 
 let dict = {};
 
-// Command methods
 function add(key, value) {
+  if (checkInput(key, value)) return;
+
   if (memberExists(key, value)) {
     console.log(") ERROR, member already exists for key");
     return;
@@ -51,12 +52,16 @@ function keys() {
 }
 
 function keyExists(key, enableLogs = false) {
+  if (checkInput(key)) return;
+
   let temp = dict[key] !== undefined;
   if (enableLogs) console.log(`) ${temp}`);
   return temp;
 }
 
 function members(key) {
+  if (checkInput(key)) return;
+
   if (!keyExists(key)) {
     console.log(") ERROR, key does not exist");
     return;
@@ -67,12 +72,15 @@ function members(key) {
 }
 
 function memberExists(key, value, enableLogs = false) {
+  if (checkInput(key, value)) return;
   let temp = keyExists(key) && dict[key].includes(value);
   if (enableLogs) console.log(`) ${temp}`);
   return temp;
 }
 
 function remove(key, value) {
+  if (checkInput(key, value)) return;
+
   if (!keyExists(key)) {
     console.log(") ERROR, key does not exist");
     return;
@@ -94,6 +102,8 @@ function remove(key, value) {
 }
 
 function removeAll(key) {
+  if (checkInput(key)) return;
+
   if (!keyExists(key)) {
     console.log(") ERROR, key does not exist");
     return;

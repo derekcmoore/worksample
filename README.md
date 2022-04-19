@@ -231,3 +231,7 @@ Example:
 ### HELP
 
 Returns all possible commands and a brief explanation of how each functions
+
+### EXIT
+
+Exits the program

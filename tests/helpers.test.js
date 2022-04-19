@@ -1,4 +1,4 @@
-const { printArray, listAllMembers } = require("../src/helpers");
+const { printArray, listAllMembers, checkInput } = require("../src/helpers");
 
 describe("function printArray", () => {
   test("with an null input", () => {
@@ -69,5 +69,49 @@ describe("function listAllMembers", () => {
     result = listAllMembers(input, false);
 
     expect(result[0]).toBe(`${input[key][0]}`);
+  });
+});
+
+describe("function checkInput", () => {
+  const key = "key";
+  const value = "value";
+  test("with an proper key and value", () => {
+    console.log = jest.fn();
+
+    checkInput(key, value);
+
+    expect(console.log).not.toHaveBeenCalled();
+  });
+
+  test("with a proper key and improper value", () => {
+    console.log = jest.fn();
+
+    checkInput(key, null);
+
+    expect(console.log.mock.calls.length).toBe(1);
+  });
+
+  test("with an improper key and value", () => {
+    console.log = jest.fn();
+
+    checkInput(null, null);
+
+    expect(console.log.mock.calls.length).toBe(2);
+  });
+
+  test("with a proper key", () => {
+    console.log = jest.fn();
+
+    checkInput(key);
+
+    expect(console.log).not.toHaveBeenCalled();
+  });
+
+  test("with an improper key", () => {
+    console.log = jest.fn();
+
+    checkInput(null);
+
+    expect(console.log.mock.calls.length).toBe(1);
   });
 });

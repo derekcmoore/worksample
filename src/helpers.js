@@ -23,4 +23,17 @@ function listAllMembers(dict, showKey = true) {
   return temp;
 }
 
-module.exports = { printArray, listAllMembers };
+function checkInput(key, value) {
+  if (!key) console.log(`) Invalid Key ${key}`);
+
+  if (typeof value === "undefined") return !key;
+
+  if (!value) {
+    console.log(`) Invalid Member ${value}`);
+    return true;
+  }
+
+  return false;
+}
+
+module.exports = { printArray, listAllMembers, checkInput };
